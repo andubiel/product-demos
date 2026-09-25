@@ -17,3 +17,16 @@ topology:
       startup-config: configs/cat8kv/startup-config.cfg
       ports:
         - "2123:22"
+    scp-server:      
+      kind: linux
+      image: python:3.11-slim
+      mgmt-ipv4: 172.20.20.11
+      exec:
+        - bash -c "apt-get update && apt-get install -y openssh-server"
+        - mkdir -p /run/sshd
+        - useradd -m -s /bin/bash scpuser
+        - bash -c "echo 'scpuser:scpuser' | chpasswd"
+        - /usr/sbin/sshd
+        - pip install gdown
+        - gdown "https://drive.google.com/uc?id=1cPPO1mxIZf4weIi497r3ffGC5g0_S58i" -O /home/scpuser/c8000v-universalk9.17.15.01a.SPA.bin
+        - chown scpuser:scpuser /home/scpuser/c8000v-universalk9.17.15.01a.SPA.bin
