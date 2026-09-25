@@ -434,6 +434,30 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
 
+  - name: "NETWORK | Staging"
+    job_type: run
+    organization: Ansible Product Demos (APD)
+    inventory: ContainerLab Inventory
+    project: "Ansible Product Demos"
+    playbook: "network/staging.yml"
+    credentials:
+      - Containerlab Device Access
+    notification_templates_started: Telemetry
+    notification_templates_success: Telemetry
+    notification_templates_error: Telemetry
+
+  - name: "NETWORK | Upgrade"
+    job_type: run
+    organization: Ansible Product Demos (APD)
+    inventory: ContainerLab Inventory
+    project: "Ansible Product Demos"
+    playbook: "network/upgrade.yml"
+    credentials:
+      - Containerlab Device Access
+    notification_templates_started: Telemetry
+    notification_templates_success: Telemetry
+    notification_templates_error: Telemetry
+
   - name: "NETWORK | Panos | Deploy"
     playbook: network/panos/deploy.yml
     project: Ansible Product Demos
